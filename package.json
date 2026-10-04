@@ -1,7 +1,8 @@
 {
-  "name": "portfolio-tmp",
+  "name": "portfolio-devmc",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "yarn@1.22.15",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
