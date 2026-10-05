@@ -3,10 +3,10 @@ import { LetsTalkButton } from "@/components/LetsTalkButton";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { profile } from "@/data/profile";
-import { projects } from "@/data/projects";
+import { personalProjects, professionalProjects, projects } from "@/data/projects";
 import { pageMetadata, siteUrl } from "@/lib/site";
 
-const description = `Projects by ${profile.shortName}: e-commerce storefronts on VTEX IO, retail media for Walmart Central America, and web applications built with React and TypeScript.`;
+const description = `Projects by ${profile.shortName}: e-commerce storefronts on VTEX IO, retail media for Walmart Central America, web applications built with React and TypeScript, and personal projects.`;
 
 export const metadata: Metadata = pageMetadata({ title: "Projects", description, path: "/projects" });
 
@@ -19,7 +19,7 @@ const collectionJsonLd = {
     "@type": "CreativeWork",
     name: p.title,
     description: p.description,
-    ...(p.url && { url: p.url }),
+    ...((p.url ?? p.repo) && { url: p.url ?? p.repo }),
     author: { "@type": "Person", name: profile.name },
   })),
 };
@@ -34,13 +34,32 @@ export default function ProjectsPage() {
         description="A selection of products I've built and led — from large-scale e-commerce storefronts to web apps built from scratch."
       />
 
-      <ul className="grid gap-6 sm:grid-cols-2">
-        {projects.map((project) => (
-          <li key={project.slug}>
-            <ProjectCard project={project} headingLevel="h2" />
-          </li>
-        ))}
-      </ul>
+      <section aria-labelledby="professional-title">
+        <h2 id="professional-title" className="mb-6 font-display text-2xl font-bold text-fg">
+          Professional work
+        </h2>
+        <ul className="grid gap-6 sm:grid-cols-2">
+          {professionalProjects.map((project) => (
+            <li key={project.slug}>
+              <ProjectCard project={project} />
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section aria-labelledby="personal-title" className="mt-20">
+        <h2 id="personal-title" className="font-display text-2xl font-bold text-fg">
+          Personal projects
+        </h2>
+        <p className="mb-6 mt-2 text-muted">Things I build to learn, experiment and sharpen my craft.</p>
+        <ul className="grid gap-6 sm:grid-cols-2">
+          {personalProjects.map((project) => (
+            <li key={project.slug}>
+              <ProjectCard project={project} />
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <div className="mt-16 flex flex-col items-start justify-between gap-6 rounded-2xl border border-line bg-surface p-8 sm:flex-row sm:items-center">
         <div>

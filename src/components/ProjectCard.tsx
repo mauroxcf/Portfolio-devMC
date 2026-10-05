@@ -2,9 +2,7 @@ import Image from "next/image";
 import type { Project } from "@/data/projects";
 import { ArrowUpRightIcon, GitHubIcon } from "./icons";
 
-export function ProjectCard({ project, headingLevel = "h3" }: { project: Project; headingLevel?: "h2" | "h3" }) {
-  const Heading = headingLevel;
-
+export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-colors hover:border-accent/50">
       <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-accent/20 via-surface to-bg">
@@ -29,7 +27,7 @@ export function ProjectCard({ project, headingLevel = "h3" }: { project: Project
         <p className="font-mono text-xs text-muted">
           {project.role} · {project.year}
         </p>
-        <Heading className="mt-2 font-display text-xl font-semibold text-fg">{project.title}</Heading>
+        <h3 className="mt-2 font-display text-xl font-semibold text-fg">{project.title}</h3>
         <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{project.description}</p>
 
         <ul className="mt-5 flex flex-wrap gap-2" aria-label="Tech stack">
